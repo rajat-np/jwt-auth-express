@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 module.exports = {
   authenticate: function(req, res, next) {
     let { email, password } = req.body;
-    console.log(req.body);
     const token = jwt.sign(
       {
         email,
