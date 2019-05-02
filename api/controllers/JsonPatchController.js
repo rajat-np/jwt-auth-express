@@ -4,9 +4,10 @@ import jwt from "jsonwebtoken";
 export default {
   patchJson: function(req, res, next) {
     let { token, jsonData, patchObject } = req.body;
+    let { secret } = process.env;
     jsonData = JSON.parse(jsonData);
     patchObject = JSON.parse(patchObject);
-    jwt.verify(token, "this_is_very_long_secret", function(err, data) {
+    jwt.verify(token, secret, function(err, data) {
       if (err) {
         res.json({
           status: "fail",

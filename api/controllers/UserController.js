@@ -3,13 +3,14 @@ import jwt from "jsonwebtoken";
 export default {
   authenticate: function(req, res, next) {
     let { email, password } = req.body;
+    let { SECRET } = process.env;
     if (email && password) {
       const token = jwt.sign(
         {
           email,
           password
         },
-        "this_is_very_long_secret",
+        SECRET,
         {
           expiresIn: 60 * 60
         }

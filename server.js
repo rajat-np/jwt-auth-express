@@ -1,11 +1,13 @@
 import express from "express";
 import logger from "morgan";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
 import UserRoutes from "./api/routes/UserRoutes";
 import JsonPatchRoutes from "./api/routes/JsonPatchRoutes";
 import ThumbnailRequestRoutes from "./api/routes/ThumbnailRequestRoutes";
 
+dotenv.config();
 const app = express();
 
 app.use(logger("dev"));
