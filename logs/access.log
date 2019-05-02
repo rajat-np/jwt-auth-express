@@ -1,4 +1,0 @@
-::1 - - [02/May/2019:19:46:24 +0000] "POST /image/getImage HTTP/1.1" 200 43 "-" "-"
-::1 - - [02/May/2019:19:47:26 +0000] "POST /user/authenticate/ HTTP/1.1" 200 259 "-" "-"
-::1 - - [02/May/2019:20:02:06 +0000] "POST /json/patchJson/ HTTP/1.1" 200 88 "-" "-"
-::1 - - [02/May/2019:20:04:26 +0000] "POST /image/getImage HTTP/1.1" 200 43 "-" "-"
