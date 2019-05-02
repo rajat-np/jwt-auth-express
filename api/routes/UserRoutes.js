@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post("/authenticate", UserController.authenticate);
 
-module.exports = router;
+export default router;

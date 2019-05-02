@@ -1,7 +1,7 @@
 import jsonpatch from "json-patch";
 import jwt from "jsonwebtoken";
 
-module.exports = {
+export default {
   patchJson: function(req, res, next) {
     let { token, jsonData, patchObject } = req.body;
     jsonData = JSON.parse(jsonData);

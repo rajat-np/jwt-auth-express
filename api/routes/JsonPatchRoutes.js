@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post("/patchJson", JsonPatchController.patchJson);
 
-module.exports = router;
+export default router;
