@@ -1,16 +1,24 @@
 import express from "express";
-import logger from "morgan";
+import morgan from "morgan";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 import UserRoutes from "./api/routes/UserRoutes";
 import JsonPatchRoutes from "./api/routes/JsonPatchRoutes";
 import ThumbnailRequestRoutes from "./api/routes/ThumbnailRequestRoutes";
 
 dotenv.config();
+
+var accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "logs/access.log"),
+  { flags: "a" }
+);
+
 const app = express();
 
-app.use(logger("dev"));
+app.use(morgan("combined", { stream: accessLogStream }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function(req, res) {
