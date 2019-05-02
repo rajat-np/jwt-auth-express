@@ -7,7 +7,6 @@ export default {
   thumbnailResize: function(req, res, next) {
     let { url, token } = req.body;
     let { SECRET } = process.env;
-    console.log("asdasd", token, SECRET);
     jwt.verify(token, SECRET, function(err, data) {
       if (err) {
         res.json({
