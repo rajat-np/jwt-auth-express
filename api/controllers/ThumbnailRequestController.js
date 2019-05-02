@@ -11,7 +11,13 @@ export default {
         .toFile(__dirname + "/output.png")
         .then(() => {
           res.sendFile(__dirname + "/output.png");
-        });
+        })
+        .catch(() =>
+          res.json({
+            status: "fail",
+            message: "Failed to generate thumbnail"
+          })
+        );
     });
   }
 };
