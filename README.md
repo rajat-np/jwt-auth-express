@@ -12,6 +12,6 @@ Edit the `.env` file to set the correct env variables.
 
 ### Routes
 
-`/user/authenticate` to authenticate a user. Expects email, password**
-`/json/patchJson` to patch a json file. Expects token, a jsonData object and patchObject**
+`/user/authenticate` to authenticate a user. Expects email, password <br/>
+`/json/patchJson` to patch a json file. Expects token, a jsonData object and patchObject <br/>
 `/image/getImage` to get a 50x50 thumbnail of any image. Expects token and url of an image
