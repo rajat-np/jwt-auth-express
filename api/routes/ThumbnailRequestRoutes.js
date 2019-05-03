@@ -3,6 +3,6 @@ import ThumbnailRequestController from "../controllers/ThumbnailRequestControlle
 
 const router = express.Router();
 
-router.post("/getImage", ThumbnailRequestController.thumbnailResize);
+router.post("/thumbnail", ThumbnailRequestController.thumbnailResize);
 
 export default router;
