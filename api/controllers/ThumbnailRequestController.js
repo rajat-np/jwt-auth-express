@@ -2,6 +2,7 @@ import sharp from "sharp";
 import jwt from "jsonwebtoken";
 
 import GetImagebase64 from "../utils/GetImageBase64";
+import settings from "../../settings";
 
 export default {
   thumbnailResize: function(req, res, next) {
@@ -17,16 +18,17 @@ export default {
         GetImagebase64(url).then(image => {
           sharp(new Buffer(image, "base64"))
             .resize(50)
-            .toFile(__dirname + "/output.png")
+            .toFile(settings.imageSavePath)
             .then(() => {
-              res.sendFile(__dirname + "/output.png");
+              res.sendFile(settings.imageSavePath);
             })
-            .catch(() =>
+            .catch(err => {
+              console.log(err);
               res.json({
                 status: "fail",
                 message: "Failed to generate thumbnail"
-              })
-            );
+              });
+            });
         });
       }
     });
