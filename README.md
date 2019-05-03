@@ -9,3 +9,26 @@ npm start
 ```
 
 Edit the `.env` file to set the correct env variables.
+
+## Usage
+
+To run development server
+<br/>
+
+```bash
+npm start
+```
+
+To run test suite
+<br/>
+
+```bash
+npm test
+```
+
+To run swagger API documentation
+<br/>
+
+```bash
+npm run swagger
+```
