@@ -6,8 +6,15 @@ export default {
     let { token, jsonData, patchObject } = req.body;
     let { SECRET } = process.env;
 
-    jsonData = JSON.parse(jsonData);
-    patchObject = JSON.parse(patchObject);
+    try {
+      jsonData = JSON.parse(jsonData);
+      patchObject = JSON.parse(patchObject);
+    } catch (err) {
+      res.json({
+        status: "fail",
+        message: "Unable to parse jsonData/ patchObject"
+      });
+    }
 
     jwt.verify(token, SECRET, function(err, data) {
       if (err) {
@@ -16,12 +23,19 @@ export default {
           message: "Invalid token"
         });
       } else {
-        let patchedJson = jsonpatch.apply(jsonData, patchObject);
-        res.json({
-          status: "success",
-          message: "Patching done",
-          patched: patchedJson
-        });
+        try {
+          let patchedJson = jsonpatch.apply(jsonData, patchObject);
+          res.json({
+            status: "success",
+            message: "Patching done",
+            patched: patchedJson
+          });
+        } catch (err) {
+          res.json({
+            status: "fail",
+            message: "Patching failed, please validate patchObject"
+          });
+        }
       }
     });
   }
