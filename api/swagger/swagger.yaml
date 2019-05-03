@@ -41,6 +41,17 @@ paths:
                   "expiresIn":"60 minutes",
                   "message":"Token generated"
                 }
+        "400":
+          description : A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+              {
+                "status":"fail",
+                "message":"Email/password is missing"
+              }
+              
   "/json/patch":
     post:
       description: This route accepts a token, a json object to be patched and a patch object.
@@ -62,6 +73,8 @@ paths:
       responses:
         "200":
           description: A JSON object
+          schema:
+            type: object
           examples:
             application/json: |-
                 {
@@ -73,6 +86,28 @@ paths:
                     ["world"]
                   }
                 }
+        "400":
+          description : A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+              {
+                "status":"fail",
+                "message":"Unable to parse jsonData/ patchObject"
+              }
+              
+        "401":
+          description : A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+              {
+                "status":"fail",
+                "message":"Invalid token"
+              }
+              
   "/image/thumbnail":
     post:
       description: This route accepts a token, an image url and returns 50x50 thumbnail of that image.
