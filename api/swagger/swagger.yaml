@@ -1,0 +1,95 @@
+---
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Backend task
+  description: This microservice has been developed as test task
+
+host: localhost:5000
+basePath: "/"
+schemes:
+  - http
+consumes:
+  - application/application/x-www-form-urlencoded
+produces:
+  - application/json
+paths:
+  "/user/authenticate":
+    post:
+      description: This route accepts a random user email and password and returns a signed JWT token to access protected routes
+      produces:
+      - application/json
+      parameters:
+        - in: "email"
+          name: "email"
+          required: true
+          type: "string"
+        - in: "password"
+          name: "password"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+                {
+                  "status":"success",
+                  "token":"a signed JWT token",
+                  "expiresIn":"60 minutes",
+                  "message":"Token generated"
+                }
+  "/json/patch":
+    post:
+      description: This route accepts a token, a json object to be patched and a patch object.
+      produces:
+        - application/json
+      parameters:
+        - in: "token"
+          name: "token"
+          required: true
+          type: "string"
+        - in: "jsonData"
+          name: "jsonData"
+          required: true
+          type: "object"
+        - in: "patchObject"
+          name: "patchObject"
+          required: true
+          type: "object"            
+      responses:
+        "200":
+          description: A JSON object
+          examples:
+            application/json: |-
+                {
+                  "status":"success",
+                  "message":"Patching done",
+                  "patched":{
+                    "baz":"boo",
+                    "hello":
+                    ["world"]
+                  }
+                }
+  "/image/thumbnail":
+    post:
+      description: This route accepts a token, an image url and returns 50x50 thumbnail of that image.
+      produces:
+        - application/json
+      parameters:
+        - in: "token"
+          name : "token"
+          required: true
+          type: "string"
+        - in: "url"
+          name : "url"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: A JSON object
+          schema:
+            type: image
+

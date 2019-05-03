@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/.bin/mocha --recursive --require babel-core/register --exit",
-    "start": "nodemon  --exec babel-node server.js"
+    "start": "nodemon  --exec babel-node server.js",
+    "swagger": " node ./node_modules/.bin/swagger project edit"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +28,8 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^6.1.4",
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    "swagger": "^0.7.5",
+    "swagger-editor": "^3.6.28"
   }
 }
