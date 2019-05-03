@@ -18,7 +18,7 @@ paths:
     post:
       description: This route accepts a random user email and password and returns a signed JWT token to access protected routes
       produces:
-      - application/json
+        - application/json
       parameters:
         - in: query
           name: "email"
@@ -30,19 +30,19 @@ paths:
           required: true
       responses:
         "200":
-          description: A JSON object
+          description: A signed JWT token is returned with validity of 1 hour
           schema:
             type: object
           examples:
             application/json: |-
-                {
-                  "status":"success",
-                  "token":"a signed JWT token",
-                  "expiresIn":"60 minutes",
-                  "message":"Token generated"
-                }
+              {
+                "status":"success",
+                "token":"a signed JWT token",
+                "expiresIn":"60 minutes",
+                "message":"Token generated"
+              }
         "400":
-          description : A JSON object
+          description: Either email or password or both are not provided
           schema:
             type: object
           examples:
@@ -51,11 +51,11 @@ paths:
                 "status":"fail",
                 "message":"Email/password is missing"
               }
-              
+
   "/json/patch":
     post:
       description: This route accepts a token, a json object to be patched and a patch object.
-      consumes: 
+      consumes:
         - application/x-www-form-urlencoded
       produces:
         - application/json
@@ -68,28 +68,28 @@ paths:
           name: "jsonData"
           required: true
           type: string
-        - in:  query
+        - in: query
           name: "patchObject"
           required: true
           type: string
       responses:
         "200":
-          description: A JSON object
+          description: A patched object is returned with the operations specified in patch object
           schema:
             type: object
           examples:
             application/json: |-
-                {
-                  "status":"success",
-                  "message":"Patching done",
-                  "patched":{
-                    "baz":"boo",
-                    "hello":
-                    ["world"]
-                  }
+              {
+                "status":"success",
+                "message":"Patching done",
+                "patched":{
+                  "baz":"boo",
+                  "hello":
+                  ["world"]
                 }
+              }
         "400":
-          description : A JSON object
+          description: Json data cannot be parsed/the patch object is not valid
           schema:
             type: object
           examples:
@@ -98,9 +98,8 @@ paths:
                 "status":"fail",
                 "message":"Unable to parse jsonData/ patchObject"
               }
-              
         "401":
-          description : A JSON object
+          description: Token not valid/provided
           schema:
             type: object
           examples:
@@ -109,7 +108,7 @@ paths:
                 "status":"fail",
                 "message":"Invalid token"
               }
-              
+
   "/image/thumbnail":
     post:
       description: This route accepts a token, an image url and returns 50x50 thumbnail of that image.
@@ -117,20 +116,20 @@ paths:
         - application/json
       parameters:
         - in: query
-          name : "token"
+          name: "token"
           required: true
           type: "string"
         - in: query
-          name : "url"
+          name: "url"
           required: true
           type: "string"
       responses:
         "200":
-          description: A JSON object
+          description: An 50x50 thumbnail of the provided public image
           schema:
             type: file
         "400":
-          description : A JSON object
+          description: Invalid image URL
           schema:
             type: object
           examples:
@@ -140,7 +139,7 @@ paths:
                 message: "Failed to generate thumbnail"
               }
         "401":
-          description : A JSON object
+          description: Token not valid/provided
           schema:
             type: object
           examples:
@@ -149,5 +148,3 @@ paths:
                 "status":"fail",
                 "message":"Invalid token"
               }
-              
-
