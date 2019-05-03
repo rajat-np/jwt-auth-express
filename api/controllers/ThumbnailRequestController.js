@@ -10,6 +10,7 @@ export default {
     let { SECRET } = process.env;
     jwt.verify(token, SECRET, function(err, data) {
       if (err) {
+        res.status(401);
         res.json({
           status: "fail",
           message: "Invalid token"
@@ -24,6 +25,7 @@ export default {
             })
             .catch(err => {
               console.log(err);
+              res.status(400);
               res.json({
                 status: "fail",
                 message: "Failed to generate thumbnail"

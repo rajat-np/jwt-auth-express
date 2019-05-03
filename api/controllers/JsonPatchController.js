@@ -10,6 +10,7 @@ export default {
       jsonData = JSON.parse(jsonData);
       patchObject = JSON.parse(patchObject);
     } catch (err) {
+      res.status(400);
       res.json({
         status: "fail",
         message: "Unable to parse jsonData/ patchObject"
@@ -18,6 +19,7 @@ export default {
 
     jwt.verify(token, SECRET, function(err, data) {
       if (err) {
+        res.status(401);
         res.json({
           status: "fail",
           message: "Invalid token"
@@ -31,6 +33,7 @@ export default {
             patched: patchedJson
           });
         } catch (err) {
+          res.status(400);
           res.json({
             status: "fail",
             message: "Patching failed, please validate patchObject"

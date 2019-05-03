@@ -22,6 +22,7 @@ export default {
         message: "Token generated"
       });
     } else {
+      res.status(400);
       res.json({
         status: "fail",
         message: "Email/password is missing"
