@@ -7,7 +7,7 @@ let should = chai.should();
 
 chai.use(chatHTTP);
 
-describe("/json/patchJson", () => {
+describe("/json/patch", () => {
   it("should take a signed token, a json object and a patch object and return a patched json object", done => {
     let payload = {
       token:
@@ -18,7 +18,7 @@ describe("/json/patchJson", () => {
     };
     chai
       .request(server)
-      .post("/json/patchJson")
+      .post("/json/patch")
       .set("content-type", "application/x-www-form-urlencoded")
       .send(payload)
       .end((err, res) => {

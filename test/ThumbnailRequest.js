@@ -7,7 +7,7 @@ let should = chai.should();
 
 chai.use(chatHTTP);
 
-describe("/image/getImage", () => {
+describe("/image/thumbnail", () => {
   it("should take a signed token and a url of public image and return a 50x50 thumbnail of that image", done => {
     let payload = {
       token:
@@ -16,7 +16,7 @@ describe("/image/getImage", () => {
     };
     chai
       .request(server)
-      .post("/image/getImage")
+      .post("/image/thumbnail")
       .set("content-type", "application/x-www-form-urlencoded")
       .send(payload)
       .end((err, res) => {
