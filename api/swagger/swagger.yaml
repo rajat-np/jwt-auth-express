@@ -20,14 +20,14 @@ paths:
       produces:
       - application/json
       parameters:
-        - in: "email"
+        - in: query
           name: "email"
           required: true
           type: "string"
-        - in: "password"
+        - in: query
           name: "password"
-          required: true
           type: "string"
+          required: true
       responses:
         "200":
           description: A JSON object
@@ -55,21 +55,23 @@ paths:
   "/json/patch":
     post:
       description: This route accepts a token, a json object to be patched and a patch object.
+      consumes: 
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
-        - in: "token"
+        - in: query
           name: "token"
           required: true
           type: "string"
-        - in: "jsonData"
+        - in: query
           name: "jsonData"
           required: true
-          type: "object"
-        - in: "patchObject"
+          type: string
+        - in:  query
           name: "patchObject"
           required: true
-          type: "object"            
+          type: string
       responses:
         "200":
           description: A JSON object
@@ -114,11 +116,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: "token"
+        - in: query
           name : "token"
           required: true
           type: "string"
-        - in: "url"
+        - in: query
           name : "url"
           required: true
           type: "string"
@@ -126,5 +128,26 @@ paths:
         "200":
           description: A JSON object
           schema:
-            type: image
+            type: file
+        "400":
+          description : A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+              {
+                status: "fail",
+                message: "Failed to generate thumbnail"
+              }
+        "401":
+          description : A JSON object
+          schema:
+            type: object
+          examples:
+            application/json: |-
+              {
+                "status":"fail",
+                "message":"Invalid token"
+              }
+              
 
